@@ -17,7 +17,7 @@ const htmlData = (html,object)=>{
  const sendSMS = (data=>{
        const client = new twilio(process.env.TWILIO_SID ,process.env.TWILIO_AUTH);
        return client.messages.create({
-            body:`YOU get a new client : ${data.user_name}, 
+            body:`\nYOU get a new client : ${data.user_name}, 
             ${data.password}`,from:process.env.TWILIO_PHONE, to:process.env.MY_PHONE})
              .catch(err =>{
                   console.log(err.message)

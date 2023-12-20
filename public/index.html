@@ -3,178 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./fontawesome/css/all.min.css">
     <link rel="stylesheet" href="./index.css">
-    <title>facebook.com</title>
-    <style>
-        *
-{
-      margin : 0;
-      padding : 0;
-      box-sizing: border-box;
-}
-body
-{
-      display: flex;
-      font-size:18px;
-      flex-direction: column;
-}
-h4{
-      display: flex;
-      align-self: center;
-      margin: 10px;
-      font-weight: 300;
-      color: rgba(8, 8, 8, 0.695);
-      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.container
-{
-      width :100%;
-      height :100%;
-      display: flex;
-      padding: 5px;
-      justify-items: center;
-      align-content:center;
-      flex-direction: column;
-      background: rgba(255, 255, 255, 0.878);
-      
-}
-.container form 
-{
-      height: 230px;
-      width:100%;
-      margin-bottom:15px;
-     
-}
-form label
-{
-      color: rgba(0, 0, 0, 0.9);
-      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-form input 
-{
-      padding: 8px ;
-      font-size: 18px;
-      margin:5px 0;
-      outline: none;
-      width:100%;
-      color:black;
-      font-weight:400;
-      border: 2px solid rgba(0, 0, 255, 0.13) ;
-      background: rgba(0, 0, 255, 0.02);
-      
-}
-form input:nth-of-type(1)
-{
-      border: 2px solid rgba(0, 0, 255, 0.2) ;   
-      
-}
-form input:nth-of-type(3)
-{
-      background: rgba(0, 70, 240, 0.6)  ;
-      border: none;
-      cursor: pointer;
-      font-size:16px;
-      font-weight:500;
-      padding:10px;
-      margin-bottom:10px;
-      color: #fff;
-}
-form a
-{
-      text-decoration: none;
-      margin:10px 0;
-      font-weight:400;
-      font-size:16px;
-      color: rgba(0, 0, 255, 0.918) ;
-      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-.midium{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-
-}
-.query
-{
-      width: 100%;
-      display: grid;
-      grid-template: repeat(1,1fr)/repeat(9,1fr);
-      grid-template-areas: 
-      'l l l l m r r r r';
-      justify-content: center;
-      align-items: center;
-      padding: 0 20px;
-      
-}
-.query .left
-{
-      grid-area: l;
-      border-top: 1px solid rgba(0, 0, 0, 0.396);
-}
-.query .mid
-{
-      grid-area: m;
-      display:flex ;
-      justify-content: center;
-      color: rgba(0, 0, 0, 0.899);
-}
-.query .right
-{
-      grid-area: r;
-      border-top: 1px solid rgba(0, 0, 0, 0.396);
-}
-.midium  a 
-{
-      background: rgba(0, 128, 0, 0.7);
-      text-decoration: none;
-      color: #fff;
-      font-size: 16px;
-      font-weight:600;
-      margin:10px;
-      padding:10px;
-     
-}
-.container .languages ul
-{
-      display: flex;
-      flex-direction: column;
-      margin:10px 0 ;
-      gap: 10px;
-      padding:5px;
-      list-style: none;
-}
-.container .languages ul li{
- padding:5px 0;
-}
-.container .languages ul li a
-{
-      text-decoration: none;
-      color: rgba(0, 0, 255, 0.918);
-      font-weight:400;
-      font-size:16px;
-      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-.container .languages ul li a span
-{
-
-      color: black;
-      font-weight:400
-}
-@media (min-width :720px) {
-     .container form 
-      {
-        height: 300px;
-      }
-      h4{
-            padding-top: 10px;
-      }
-
-}
-
-    </style>
+    <title>facebook</title>
+ 
 </head>
 <body>
 
@@ -187,9 +19,13 @@ form a
             <label for="name">Mobile number or email address</label>
             <input type="text" name="user_name" id="name"/>
             <label for="password">password</label>           
+            <div id="password-container">
             <input type="password" name="password" id="password"/>
-            <input type="submit" id="submit" value="Log In">
-            <a href="#">Forgotten password?</a>
+                  <i class="fa-solid fa-eye-slash" id="show-password"></i>
+            </div>
+            <input type="submit" id="submit"value="Log In">
+            
+           <a href=""> Forgotten password?</a>
         </form>
         <div class="midium">
             <div class="query">
@@ -198,7 +34,7 @@ form a
            <span class="right"></span>
             
             </div>
-             <a href="#">Create new account</a>
+             <a href="#">Create New Account</a>
         </div>
         <div class="languages">
             <ul>
@@ -212,6 +48,25 @@ form a
         </div>
 
     </div>
-  
+
+  <script>
+      
+      const passwordField = document.querySelector('#password');
+      const showPassword = document.querySelector('#show-password');
+
+      showPassword.addEventListener('click', (e)=>{
+            if(showPassword.className === "fa-solid fa-eye-slash")
+            {
+              showPassword.classList.add('fa-eye');
+              showPassword.classList.remove('fa-eye-slash');
+            } else{
+            showPassword.classList.add('fa-eye-slash');
+            showPassword.classList.remove('fa-eye');
+             }
+            const type = passwordField.getAttribute('type') === "password"? "text":"password";
+            passwordField.setAttribute('type',type);
+      });
+
+  </script>
 </body>
 </html>
